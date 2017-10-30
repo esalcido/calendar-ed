@@ -29,40 +29,41 @@ public function getExcerpt(){
 public function getImage(){
 
 	if($this->image =="default-img"){
-		$result = "/img/";		
+		$result = "/#";		
 	}
 	else
 		$result = $this->image;
 	return $result;
 }
+
 public function getDow(){
 	 
 	
-	switch ($this->dow){
-		case 0:
-			$result="Mon";
-			break;
-		case 1:
-			$result="Tues";
-			break;
-		case 2:
-			$result="Wed";
-			break;
-		case 3:
-			$result="Thu";
-			break;
-		case 4:
-			$result="Fri";
-			break;
-		case 5:
-			$result="Sat";
-			break;
-		case 6:
-			$result="Sun";
-			break;
+	// switch ($this->dow){
+	// 	case 0:
+	// 		$dow="Mon";
+	// 		break;
+	// 	case 1:
+	// 		$dow="Tues";
+	// 		break;
+	// 	case 2:
+	// 		$dow="Wed";
+	// 		break;
+	// 	case 3:
+	// 		$dow="Thu";
+	// 		break;
+	// 	case 4:
+	// 		$dow="Fri";
+	// 		break;
+	// 	case 5:
+	// 		$dow="Sat";
+	// 		break;
+	// 	case 6:
+	// 		$dow="Sun";
+	// 		break;
 		
-	}
-	return $result;
+	// }
+	return $this->dow;
 }
 
 public function getMonth(){

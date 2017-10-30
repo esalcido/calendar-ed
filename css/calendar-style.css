@@ -3,10 +3,10 @@
 .event-container{
 	margin-left: 20px;
 	float:left;
-	padding: 10px;
+	padding: 20px;
 }
 .event-body{
-	background:#d3d3d3;
+	/*background:#d3d3d3;*/
 	border:1px solid black;
 	border-radius: 10px;
 	height: 400px;
@@ -18,14 +18,14 @@
 }
 .event-excerpt{
 	z-index: 1001;
-	background-color: black;
+	background-color: white;
 	color: white;
 	position: absolute;
-	margin-top:90%; 
+	margin-top:50%; 
 	width: 100%;
 	opacity: .85;
-	padding: 5px;
-	height: 100%;
+	padding: 10px;
+	height: 40%;
 }
 .event-featured-img{
 	object-fit:cover;
@@ -52,21 +52,40 @@
 }
 
 
-/*mobile */
+.upholstery{
+	z-index:0;
+	background:
+radial-gradient(hsl(285, 100%, 27%) 4%, hsl(271, 84%, 41%) 9%, hsla(0, 100%, 20%, 0) 9%) 0 0,  radial-gradient(hsl(285, 100%, 27%) 4%, hsl(316, 100%, 18%) 8%, hsla(0, 100%, 20%, 0) 10%) 50px 50px,  radial-gradient(hsla(282, 100%, 30%, 0.8) 20%, hsla(0, 100%, 20%, 0)) 50px 0,  radial-gradient(hsla(274, 100%, 30%, 0.8) 20%, hsla(0, 100%, 20%, 0)) 0 50px,  radial-gradient(hsl(299, 100%, 20%) 35%, hsla(0, 100%, 20%, 0) 60%) 50px 0,  radial-gradient(hsl(307, 100%, 20%) 35%, hsla(0, 100%, 20%, 0) 60%) 100px 50px,  radial-gradient(hsla(318, 100%, 15%, 0.7), hsla(0, 100%, 20%, 0)) 0 0,  radial-gradient(hsla(285, 100%, 15%, 0.7), hsla(0, 100%, 20%, 0)) 50px 50px,  linear-gradient(45deg, hsla(0, 100%, 20%, 0) 49%, hsla(0, 100%, 0%, 1) 50%, hsla(0, 100%, 20%, 0) 70%) 0 0,  linear-gradient(-45deg, hsla(0, 100%, 20%, 0) 49%, hsla(0, 100%, 0%, 1) 50%, hsla(0, 100%, 20%, 0) 70%) 0 0;
+background-color: #300; 
+background-size: 100px 100px;
+}
+
+
+.abril-fatface{
+	font-family: 'Italianno', cursive;
+	font-size: 99px;
+	color:#9400D3;
+}
+
+
+/*============== MOBILE =============================== */
 @media all and (max-width: 750px){
 .event-date{
 	border:1px solid black;
 	background: #fff;
 	border-radius: 10px;
-	padding:10px;
+	padding:4%;
 	width: 70px;
 	position: absolute;
 	margin-top: -460px;
 	z-index: 1002;
 	margin-bottom: 10%;
 	min-width: 6%;
-	padding:10px;
+	
+}
+.event-container{
+	padding:40px;
 }
 
-
 }
+

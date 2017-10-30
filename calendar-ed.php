@@ -14,6 +14,9 @@ function add_styles(){
 	//wp_register_style('ed-calendar-styles', '' , '','screen');
 
 	wp_enqueue_style('ed-calendar-styles',plugin_dir_url('__FILE__').'/calendar-ed/css/calendar-style.css');
+	wp_enqueue_style('google-font-Abrilfatface','https://fonts.googleapis.com/css?family=Italianno');
+
+	
 }
 
 add_action('wp_enqueue_scripts', 'add_styles');
@@ -26,6 +29,9 @@ add_action('admin_menu', 'calendar_ed_setup_menu');
 
 function calendar_ed_setup_menu(){
 	add_menu_page('Calendar Ed Page','Calendar Page','manage_options','calendar plugin','test_init' );
+	add_options_page('My Plugin Options','calendar-ed','manage_options','calendar plugin','my_plugin_options');
+
+	add_action('admin_init','register_my_plugin_settings');
 }
 
 function test_init(){
@@ -62,46 +68,69 @@ function test_handle_post(){
 	}
 }
 
+function register_my_plugin_settings(){
+	register_setting('my-plugin-group', 'date');
+	register_setting('my-plugin-group', 'image');
 
-function create_calendar_entry(){
-
-
-
-//$date = date_create("2017-10-16");
-$ev1 = new Event("2017-10-16","this is the excerpt","/wp-content/uploads/2017/10/oct-20-olounge-flyer-final-2.png");
-$ev2 = new Event("2017-10-18","Fuckin ay","default-img");
-$ev3 = new Event("2017-10-21","trip[ ouyr","default-img");
-
-$events = new ArrayList();
-$events->add($ev1);
-$events->add($ev2);
-$events->add($ev3);
-
-
-for($i=0;$i < $events->size() ;$i++){
-//foreach($events as $x){
-?>
-
-<div class="row" >
-          <div class="event-container">
-            <div class="event-body">
-              <div class="event-excerpt img-fluid"><p> <?=  $events->get($i)->getExcerpt();  ?></p></div>
-              <div class="event-featured-img"><img src=<?= $events->get($i)->getImage(); ?> class="img-fluid" width="300px" height="400px"></div>
-            </div>
-            <div class="event-date"> 
-              <center><p><b style="color:black;"><?= $events->get($i)->getDow(); ?></b> <?= $events->get($i)->getMonth(); ?> <b><h2><?= $events->get($i)->getDom();  ?></h2></b></p></center>
-            </div>
- </div>
- 
-
-<?php
-	}//end of for loop
-?>
-<div class="clear"></div>
-
-<?php
 }
 
-add_shortcode('calendar','create_calendar_entry')
+function my_plugin_options(){
+
+	if(!current_user_can('manage_options')){
+		wp_die( __('You do not have sufficient permissions to access this page.'));
+	}
+
+	// echo '<div class="wrap">';
+	// echo '<p>Here is where the form would go if I actually had options.</p>';
+	// echo '</div>';
 
 ?>
+<div class="wrap">
+	<h1>Calendar Ed</h1>
+<form method="post" action="options.php">
+	<?php settings_fields('my-plugin-group'); ?>
+	<?php do_settings_sections('my-plugin-group'); ?>
+	<table class="form-table" >
+		<tr valign="top">
+		<th scope="row" > date </th>
+		<td><input type="text" name="date" value="<?php echo esc_attr(get_option('date')); ?>" /></td>
+		</tr>
+
+		<tr valign="top">
+		<th scope="row" > image </th>
+		<td><input type="text" name="image" value="<?php echo esc_attr(get_option('image')); ?>" /></td>
+		</tr>
+	</table>
+
+	<?php submit_button(); ?>
+</form>
+</div>
+<?php
+
+	
+}
+
+
+
+
+
+function create_calendar_entry2(){
+
+	ob_start();
+
+	include '/views/calendar-entry.php';
+
+	return ob_get_clean();
+	
+
+}
+
+add_shortcode('calendar1','create_calendar_entry2');
+
+
+
+
+?>
+
+
+
